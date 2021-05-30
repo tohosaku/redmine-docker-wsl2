@@ -7,6 +7,6 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 
 RUN apt-get update -qq && apt-get install -y nodejs yarn postgresql-client build-essential libpq-dev
 WORKDIR /usr/src/redmine
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY entrypoint.sh redmine.sh webpack.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh && chmod +x /usr/local/bin/redmine.sh && chmod +x /usr/local/bin/webpack.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

@@ -24,10 +24,11 @@ services:
   railsdb:
     container_name: railsdb
     image: postgres:12.2
+    env_file:
+      - ./.dbpass.env
     environment:
       POSTGRES_DB: railsdb
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${DB_PASS}
     volumes:
       - db-dev:/var/lib/postgresql/data
 volumes:
