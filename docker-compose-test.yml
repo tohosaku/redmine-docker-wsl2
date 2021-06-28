@@ -2,7 +2,6 @@ services:
   redmine:
     command: bash
     environment:
-      WEBPACK_HOST: webpack
       CAPYBARA_SERVER_HOST: redmine
       CAPYBARA_SERVER_PORT: 3000
       SELENIUM_REMOTE_URL: http://chrome:4444/wd/hub
@@ -10,10 +9,6 @@ services:
     depends_on:
       - chrome
     tty: true
-  webpack:
-    environment:
-      WEBPACK_HOST: webpack
-      WEBPACK_PORT: 3035
   chrome:
     image: selenium/standalone-chrome-debug:latest
     ports:
