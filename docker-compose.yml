@@ -2,6 +2,7 @@ x-app: &app_base
   build: .
   volumes:
     - ../redmine:/usr/src/redmine
+    - ../plugins:/usr/src/redmine/plugins
     - bundle-data:/usr/local/bundle
   environment:
     LOCAL_UID: ${LOCAL_UID}
@@ -24,7 +25,6 @@ services:
     ports:
       - 3035:3035
   railsdb:
-    container_name: railsdb
     image: postgres:12.2
     env_file:
       - ./.dbpass.env
