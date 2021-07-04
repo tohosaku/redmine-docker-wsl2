@@ -16,7 +16,7 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && bin/rails s -p 3000 -b '0.0.0.0'"
     depends_on:
       - webpack
-      - railsdb
+      - db
     ports:
       - 3000:3000
   webpack:
@@ -24,15 +24,15 @@ services:
     command: bash -c "rm -rf public/packs && yarn webpack serve"
     ports:
       - 3035:3035
-  railsdb:
-    image: postgres:12.2
+  db:
+    image: postgres:13.3
     env_file:
       - ./.dbpass.env
     environment:
-      POSTGRES_DB: railsdb
+      POSTGRES_DB: redmine
       POSTGRES_USER: postgres
     volumes:
-      - db-dev:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
 volumes:
   bundle-data:
-  db-dev:
+  db-data:

@@ -1,6 +1,5 @@
 services:
   redmine:
-    command: bash
     environment:
       CAPYBARA_SERVER_HOST: redmine
       CAPYBARA_SERVER_PORT: 3000
@@ -8,7 +7,6 @@ services:
       RAILS_ENV: test
     depends_on:
       - chrome
-    tty: true
   chrome:
     image: selenium/standalone-chrome-debug:latest
     ports:

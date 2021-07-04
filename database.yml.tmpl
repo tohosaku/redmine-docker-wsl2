@@ -1,20 +1,20 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: railsdb
+  host: db
   username: postgres
   password: 
   pool: 5
 
 development:
   <<: *default
-  database: railsdb
+  database: redmine
 
 production:
   <<: *default
-  database: railsdb
+  database: redmine
 
 
 test:
   <<: *default
-  database: railsdb_test
+  database: redmine_test
