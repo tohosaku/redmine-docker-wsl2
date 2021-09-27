@@ -1,4 +1,4 @@
-FROM ruby:2.7-slim-buster
+FROM ruby:3-slim-bullseye
 ENV LANG C.UTF-8
 
 RUN apt-get update -qq && apt-get install -y curl gnupg gosu git imagemagick ghostscript

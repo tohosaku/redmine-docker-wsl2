@@ -4,9 +4,10 @@ x-app: &app_base
     - ../redmine:/usr/src/redmine
     - ../plugins:/usr/src/redmine/plugins
     - bundle-data:/usr/local/bundle
+  env_file:
+    - ./.user.env
   environment:
-    LOCAL_UID: ${LOCAL_UID}
-    LOCAL_GID: ${LOCAL_GID}
+    RAILS_ENV: ${RAILS_ENV:-development}
     WEBPACK_HOST: webpack
     WEBPACK_PORT: 3035
 
