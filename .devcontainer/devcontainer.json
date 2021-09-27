@@ -23,7 +23,12 @@
 	"settings": {},
 
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [],
+	"extensions": [
+		"mhutchie.git-graph",
+		"wingrunr21.vscode-ruby",
+		"rebornix.ruby",
+		"koichisasada.vscode-rdbg"
+	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
