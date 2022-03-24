@@ -1,0 +1,5 @@
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'vim-skk/eskk.vim'
