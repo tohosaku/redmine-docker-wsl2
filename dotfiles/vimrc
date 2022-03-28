@@ -98,3 +98,42 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+
+" function to find file under current node
+function! NERDTreeFindFile(node)
+  if a:node.path.isDirectory == 1
+    let path = a:node.path.str()
+  else
+    let path = a:node.path.getDir().str()
+  endif
+  echo path
+  NERDTreeClose
+  call fzf#vim#files(path)
+endfunction
+
+" function to grep files under current node
+function! NERDTreeGrepFile(node)
+  if a:node.path.isDirectory == 1
+    let path = a:node.path.str()
+  else
+    let path = a:node.path.getDir().str()
+  endif
+  NERDTreeClose
+  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case \"\" ".shellescape(path), 1, fzf#vim#with_preview())
+endfunction
+
+augroup nerdtree
+  autocmd!
+  " find file under current node
+  autocmd VimEnter * call NERDTreeAddKeyMap({
+        \ 'key': 'zf',
+        \ 'callback': 'NERDTreeFindFile',
+        \ 'quickhelpText': 'find file under current node',
+        \ 'scope': 'Node' })
+  " grep files under current node
+  autocmd VimEnter * call NERDTreeAddKeyMap({
+        \ 'key': 'zg',
+        \ 'callback': 'NERDTreeGrepFile',
+        \ 'quickhelpText': 'grep files under current node',
+        \ 'scope': 'Node' })
+augroup END
