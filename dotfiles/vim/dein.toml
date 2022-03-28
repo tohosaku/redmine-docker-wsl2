@@ -3,3 +3,14 @@ repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'vim-skk/eskk.vim'
+
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --all'
+merged = '0'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+
