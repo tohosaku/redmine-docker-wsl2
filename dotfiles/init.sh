@@ -10,3 +10,6 @@ ln -s ~/.dotfiles/screenrc ~/.screenrc
 rm -rf ~/.vim
 ln -s ~/.dotfiles/vim ~/.vim
 
+rm -rf ~/.config
+ln -s ~/.dotfiles/config ~/.config
+
