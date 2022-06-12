@@ -124,3 +124,6 @@ stty stop undef
 export GEM_HOME=~/.ruby/
 export PATH="$PATH:~/.ruby/bin"
 
+eval "$(starship init bash)"
+
+
