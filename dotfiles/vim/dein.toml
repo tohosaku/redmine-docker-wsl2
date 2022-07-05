@@ -1,4 +1,7 @@
 [[plugins]]
+repo = 'baberthal/yajs.vim'
+
+[[plugins]]
 repo = 'scrooloose/nerdtree'
 
 [[plugins]]
