@@ -1,0 +1,30 @@
+# https://qiita.com/sfus/items/063797a1dd8fdc7d032f より
+# T で tag
+bind main    T ?git tag "%(prompt Enter tag name: )" %(commit)
+bind refs    T ?git tag "%(prompt Enter tag name: )" %(branch)
+
+# B でブランチを作成してそのブランチに移動 (checkout -b)
+bind main    B      ?git checkout -b "%(prompt Enter branch name: )" %(branch)
+bind refs    B      ?git checkout -b "%(prompt Enter branch name: )" %(branch)
+bind main    <Esc>b ?git checkout -b "%(prompt Enter branch name: )" %(commit)
+
+# M で merge
+bind main    M      ?git merge %(branch)
+bind diff    M      ?git merge %(branch)
+bind refs    M      ?git merge %(branch)
+bind main    <Esc>m ?git merge %(commit)
+bind diff    <Esc>m ?git merge %(commit)
+
+# R で rebase
+bind main    R      ?git rebase %(branch)
+bind diff    R      ?git rebase %(branch)
+bind refs    R      ?git rebase %(branch)
+bind main    <Esc>r ?git rebase %(commit)
+bind diff    <Esc>r ?git rebase %(commit)
+
+# I で rebase -i
+bind main    I      ?git rebase -i %(branch)
+bind diff    I      ?git rebase -i %(branch)
+bind refs    I      ?git rebase -i %(branch)
+bind main    <Esc>i ?git rebase -i %(commit)
+bind diff    <Esc>i ?git rebase -i %(commit)
