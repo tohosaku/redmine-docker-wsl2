@@ -96,49 +96,49 @@ map <C-h> :tabprevious<CR>
 let mapleader = ","
 nnoremap <Leader>a :echo "Hello"<CR>
 
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+" Ctrl+nでファイルツリーを表示/非表示する
+nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
 
-" function to find file under current node
-function! NERDTreeFindFile(node)
-  if a:node.path.isDirectory == 1
-    let path = a:node.path.str()
+"" fzf.vim
+" Ctrl+pでファイル検索を開く
+" git管理されていれば:GFiles、そうでなければ:Filesを実行する
+fun! FzfOmniFiles()
+  let is_git = system('git status')
+  if v:shell_error
+    :Files
   else
-    let path = a:node.path.getDir().str()
+    :GFiles
   endif
-  echo path
-  NERDTreeClose
-  call fzf#vim#files(path)
-endfunction
+endfun
+nnoremap <C-p> :call FzfOmniFiles()<CR>
 
-" function to grep files under current node
-function! NERDTreeGrepFile(node)
-  if a:node.path.isDirectory == 1
-    let path = a:node.path.str()
-  else
-    let path = a:node.path.getDir().str()
-  endif
-  NERDTreeClose
-  call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case \"\" ".shellescape(path), 1, fzf#vim#with_preview())
-endfunction
+" Ctrl+gで文字列検索を開く
+" <S-?>でプレビューを表示/非表示する
+command! -bang -nargs=* Rg
+\ call fzf#vim#grep(
+\ 'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
+\ <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 3..'}, 'up:60%')
+\ : fzf#vim#with_preview({'options': '--exact --delimiter : --nth 3..'}, 'right:50%:hidden', '?'),
+\ <bang>0)
+nnoremap <C-g> :Rg<CR>
 
-augroup nerdtree
-  autocmd!
-  " find file under current node
-  autocmd VimEnter * call NERDTreeAddKeyMap({
-        \ 'key': 'zf',
-        \ 'callback': 'NERDTreeFindFile',
-        \ 'quickhelpText': 'find file under current node',
-        \ 'scope': 'Node' })
-  " grep files under current node
-  autocmd VimEnter * call NERDTreeAddKeyMap({
-        \ 'key': 'zg',
-        \ 'callback': 'NERDTreeGrepFile',
-        \ 'quickhelpText': 'grep files under current node',
-        \ 'scope': 'Node' })
-augroup END
+" frでカーソル位置の単語をファイル検索する
+nnoremap fr vawy:Rg <C-R>"<CR>
+" frで選択した単語をファイル検索する
+xnoremap fr y:Rg <C-R>"<CR>
+
+" fbでバッファ検索を開く
+nnoremap fb :Buffers<CR>
+" fpでバッファの中で1つ前に開いたファイルを開く
+nnoremap fp :Buffers<CR><CR>
+" flで開いているファイルの文字列検索を開く
+nnoremap fl :BLines<CR>
+" fmでマーク検索を開く
+nnoremap fm :Marks<CR>
+" fhでファイル閲覧履歴検索を開く
+nnoremap fh :History<CR>
+" fcでコミット履歴検索を開く
+nnoremap fc :Commits<CR>
 
 " tig-explorer
 " open tig with current file
