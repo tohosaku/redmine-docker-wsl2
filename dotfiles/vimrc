@@ -166,3 +166,22 @@ set number
 " set cursorline
 " hi clear CursorLine
 
+"""""""""""
+" QuickFix
+"""""""""""
+" 前へ
+nnoremap [q :cprevious<CR>
+" 次へ
+nnoremap ]q :cnext<CR>
+" 最初へ
+nnoremap [Q :<C-u>cfirst<CR>
+" 最後へ
+nnoremap ]Q :<C-u>clast<CR>
+
+""""""""""
+" ripgrep
+""""""""""
+if executable('rg')
+    let &grepprg = 'rg --vimgrep --hidden'
+    set grepformat=%f:%l:%c:%m
+endif
