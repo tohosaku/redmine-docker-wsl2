@@ -4,8 +4,11 @@ ln -s ~/.dotfiles/bashrc ~/.bashrc
 rm -f ~/.vimrc
 ln -s ~/.dotfiles/vimrc ~/.vimrc
 
-rm -f ~/.screenrc
-ln -s ~/.dotfiles/screenrc ~/.screenrc
+rm -f ~/.tmux.conf
+ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
+
+rm -f ~/.gitmux.conf
+ln -s ~/.dotfiles/gitmux.conf ~/.gitmux.conf
 
 rm -rf ~/.vim
 ln -s ~/.dotfiles/vim ~/.vim
